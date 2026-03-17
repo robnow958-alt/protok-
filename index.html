@@ -18,7 +18,6 @@
     --white: #f0f0f8;
     --red: #e03030;
     --red-dim: #7a1a1a;
-    --amber: #d4821a;
     --mono: 'Share Tech Mono', monospace;
     --display: 'Bebas Neue', sans-serif;
     --body: 'DM Sans', sans-serif;
@@ -35,26 +34,6 @@
     font-size: 16px;
     line-height: 1.7;
     overflow-x: hidden;
-  }
-
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.08) 2px, rgba(0,0,0,0.08) 4px);
-    pointer-events: none;
-    z-index: 9999;
-    mix-blend-mode: multiply;
-  }
-
-  body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    opacity: 0.03;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 9998;
   }
 
   nav {
@@ -297,54 +276,6 @@
     50% { transform: scaleY(1); transform-origin: top; }
     51% { transform: scaleY(1); transform-origin: bottom; }
     100% { transform: scaleY(0); transform-origin: bottom; }
-  }
-
-  .hero-cover {
-    position: absolute;
-    right: 12%;
-    top: 35%;
-    transform: translateY(-50%);
-    width: 180px;
-    height: 270px;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
-  }
-
-  .cover-glow {
-    position: absolute;
-    inset: -40px;
-    background: radial-gradient(circle, rgba(224,48,48,0.25) 0%, transparent 70%);
-    z-index: -1;
-    filter: blur(60px);
-    animation: glow-pulse 2s ease-in-out infinite;
-  }
-
-  @keyframes glow-pulse {
-    0%, 100% { opacity: 0.4; transform: scale(0.95); }
-    50% { opacity: 0.9; transform: scale(1.05); }
-  }
-
-  .cover-img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    filter: drop-shadow(0 50px 100px rgba(0,0,0,1)) drop-shadow(0 0 40px rgba(224,48,48,0.5));
-    transform: perspective(600px) rotateY(-45deg) rotateX(12deg) rotateZ(-3deg);
-    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-    animation: cover-float 4s ease-in-out infinite;
-  }
-
-  @keyframes cover-float {
-    0%, 100% { transform: perspective(800px) rotateY(-35deg) rotateX(8deg) rotateZ(-2deg) translateY(0); }
-    50% { transform: perspective(800px) rotateY(-35deg) rotateX(8deg) rotateZ(-2deg) translateY(-10px); }
-  }
-
-  .hero-cover:hover .cover-img {
-    transform: perspective(800px) rotateY(-15deg) rotateX(0deg) rotateZ(0deg) scale(1.08);
-    animation: none;
   }
 
   section {
@@ -831,7 +762,6 @@
     margin-top: 12px;
   }
 
-  /* AUTHOR NOTE - DODANE */
   .author-note {
     background: var(--black);
     border-top: 1px solid var(--border);
@@ -856,7 +786,6 @@
     margin-top: 20px;
   }
 
-  /* FAQ - DODANE */
   .faq-section {
     background: var(--black);
     padding: 80px 40px;
@@ -951,7 +880,6 @@
   .code-line .key { color: var(--red); }
   .code-line .val { color: var(--bright); }
 
-  /* COOKIE BANNER - DODANE */
   .cookie-banner {
     position: fixed;
     bottom: 0;
@@ -984,29 +912,6 @@
     text-transform: uppercase;
   }
 
-  @media (max-width: 1024px) {
-    .hero-cover {
-      position: relative;
-      right: auto;
-      top: auto;
-      transform: none;
-      width: 180px;
-      height: 270px;
-      margin: 40px auto 0;
-    }
-    .hero-bottom {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-    .hero-desc {
-      border-left: none;
-      padding-left: 0;
-      border-bottom: 2px solid var(--red);
-      padding-bottom: 20px;
-    }
-  }
-
   @media (max-width: 768px) {
     nav { padding: 14px 20px; }
     .hero { padding: 0 20px 60px; }
@@ -1023,7 +928,6 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="nav-logo"><span>PROTOKÓŁ</span> ZERO // ROB VELD</div>
   <div class="nav-status">
@@ -1032,7 +936,6 @@
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
@@ -1058,11 +961,6 @@
       <a href="#fundamenty" class="btn-ghost">05 FUNDAMENTÓW →</a>
     </div>
   </div>
-  
- <div class="hero-cover">
-  <div class="cover-glow"></div>
-  <img src="okładka.png" alt="Protokół Zero" class="okładka.png">
-</div>
 
   <div class="scroll-hint">
     <span>SCROLL</span>
@@ -1070,7 +968,6 @@
   </div>
 </section>
 
-<!-- PROBLEM -->
 <section class="problem" id="problem">
   <div class="container">
     <div class="section-label reveal">DIAGNOZA STARTOWA</div>
@@ -1133,7 +1030,6 @@
   </div>
 </section>
 
-<!-- SYSTEM - 3 NARZĘDZIA -->
 <section class="system" id="system">
   <div class="container">
     <div class="section-label reveal">ETAP 2: NARZĘDZIA KRYTYCZNE</div>
@@ -1208,7 +1104,6 @@
   </div>
 </section>
 
-<!-- TRIADA -->
 <section class="triada" id="triada">
   <div class="container">
     <div class="triada-grid">
@@ -1252,7 +1147,6 @@
   </div>
 </section>
 
-<!-- 5 FUNDAMENTÓW -->
 <section class="fundamenty" id="fundamenty">
   <div class="container">
     <div class="section-label reveal">ZAKOŃCZENIE</div>
@@ -1298,7 +1192,6 @@
   </div>
 </section>
 
-<!-- OSOBISTA NOTKA - DODANE -->
 <section class="author-note">
   <div class="container">
     <p>TA KSIĄŻKA POWSTAŁA W CZASIE, GDY SAM JEJ POTRZEBOWAŁEM NAJBARDZIEJ.</p>
@@ -1308,7 +1201,6 @@
   </div>
 </section>
 
-<!-- CTA -->
 <section class="cta-section">
   <div class="container">
     <div class="cta-inner">
@@ -1329,7 +1221,6 @@
         <div class="cta-headline">CO ZROBISZ JUTRO,<br>BY NIE COFNĄĆ SIĘ?</div>
         <div class="cta-sub">Nie czekaj na poniedziałek. Poniedziałek to kłamstwo prokrastynacji. Twój Protokół Zero zaczyna się w tej sekundzie.</div>
         <div class="cta-actions">
-          <!-- LINK DO NAFFY - DODANE -->
           <a href="https://naffy.pl/checkout/TWOJ_LINK" class="btn-primary">↓ POBIERZ PROTOKÓŁ ZERO – 47 ZŁ</a>
           <a href="#problem" class="btn-ghost">← WRÓĆ DO DIAGNOZY</a>
         </div>
@@ -1339,7 +1230,6 @@
   </div>
 </section>
 
-<!-- FAQ - DODANE -->
 <section class="faq-section" id="faq">
   <div class="container">
     <div class="section-label reveal">FAQ</div>
@@ -1362,7 +1252,6 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo"><span>PROTOKÓŁ</span> ZERO — ROB VELD</div>
   <div class="footer-meta">
@@ -1372,14 +1261,12 @@
   </div>
 </footer>
 
-<!-- COOKIE BANNER - DODANE -->
 <div id="cookie-banner" class="cookie-banner">
   <p>Ta strona używa cookies wyłącznie do obsługi płatności (Naffy). Nie śledzimy Cię. Nie sprzedajemy danych.</p>
   <button onclick="acceptCookies()">ROZUMIEM</button>
 </div>
 
 <script>
-  // Reveal on scroll
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -1390,7 +1277,6 @@
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // Cookie banner
   function acceptCookies() {
     localStorage.setItem('cookiesAccepted', 'true');
     document.getElementById('cookie-banner').style.display = 'none';
