@@ -278,6 +278,54 @@
     100% { transform: scaleY(0); transform-origin: bottom; }
   }
 
+  .hero-cover {
+    position: absolute;
+    right: 12%;
+    top: 35%;
+    transform: translateY(-50%);
+    width: 240px;
+    height: 360px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .cover-glow {
+    position: absolute;
+    inset: -40px;
+    background: radial-gradient(circle, rgba(224,48,48,0.25) 0%, transparent 70%);
+    z-index: -1;
+    filter: blur(60px);
+    animation: glow-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% { opacity: 0.4; transform: scale(0.95); }
+    50% { opacity: 0.9; transform: scale(1.05); }
+  }
+
+  .cover-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 50px 100px rgba(0,0,0,1)) drop-shadow(0 0 40px rgba(224,48,48,0.5));
+    transform: perspective(600px) rotateY(-45deg) rotateX(12deg) rotateZ(-3deg);
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    animation: cover-float 4s ease-in-out infinite;
+  }
+
+  @keyframes cover-float {
+    0%, 100% { transform: perspective(800px) rotateY(-35deg) rotateX(8deg) rotateZ(-2deg) translateY(0); }
+    50% { transform: perspective(800px) rotateY(-35deg) rotateX(8deg) rotateZ(-2deg) translateY(-10px); }
+  }
+
+  .hero-cover:hover .cover-img {
+    transform: perspective(800px) rotateY(-15deg) rotateX(0deg) rotateZ(0deg) scale(1.08);
+    animation: none;
+  }
+
   section {
     padding: 100px 40px;
     border-bottom: 1px solid var(--border);
@@ -912,6 +960,29 @@
     text-transform: uppercase;
   }
 
+  @media (max-width: 1024px) {
+    .hero-cover {
+      position: relative;
+      right: auto;
+      top: auto;
+      transform: none;
+      width: 200px;
+      height: 300px;
+      margin: 40px auto 0;
+    }
+    .hero-bottom {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .hero-desc {
+      border-left: none;
+      padding-left: 0;
+      border-bottom: 2px solid var(--red);
+      padding-bottom: 20px;
+    }
+  }
+
   @media (max-width: 768px) {
     nav { padding: 14px 20px; }
     .hero { padding: 0 20px 60px; }
@@ -961,12 +1032,12 @@
       <a href="#fundamenty" class="btn-ghost">05 FUNDAMENTÓW →</a>
     </div>
   </div>
-  
-<div class="hero-cover">
-  <div class="cover-glow"></div>
-  <img src="okladka.png" alt="Protokół Zero" class="okladka.png">
-</div>
-  
+
+  <div class="hero-cover">
+    <div class="cover-glow"></div>
+    <img src="protokol-zero-cover.jpg" alt="Protokół Zero" class="cover-img">
+  </div>
+
   <div class="scroll-hint">
     <span>SCROLL</span>
     <div class="scroll-line"></div>
@@ -1226,7 +1297,7 @@
         <div class="cta-headline">CO ZROBISZ JUTRO,<br>BY NIE COFNĄĆ SIĘ?</div>
         <div class="cta-sub">Nie czekaj na poniedziałek. Poniedziałek to kłamstwo prokrastynacji. Twój Protokół Zero zaczyna się w tej sekundzie.</div>
         <div class="cta-actions">
-          <a href="https://naffy.pl/checkout/TWOJ_LINK" class="btn-primary">↓ POBIERZ PROTOKÓŁ ZERO – 47 ZŁ</a>
+          <a href="https://naffy.pl/checkout/TWOJ_LINK" class="btn-primary">🔥 POBIERZ PROTOKÓŁ ZERO – 47 ZŁ</a>
           <a href="#problem" class="btn-ghost">← WRÓĆ DO DIAGNOZY</a>
         </div>
         <div class="cta-note">WERSJA 1.0.25 // AKT I: ANATOMIA UPADKU // OGARNIJ CHAOS</div>
