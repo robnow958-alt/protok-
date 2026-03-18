@@ -4,79 +4,63 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PROTOKÓŁ ZERO — Rob Veld</title>
+<link rel="icon" type="image/svg+xml" href="logo.svg">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:#060608;color:#c8c8d4;font-family:'Courier New',monospace;line-height:1.6}
-nav{position:fixed;top:0;left:0;right:0;padding:16px 40px;border-bottom:1px solid #1e1e24;background:rgba(6,6,8,0.92);display:flex;justify-content:space-between;font-size:11px;letter-spacing:2px;z-index:100}
+nav{position:fixed;top:0;left:0;right:0;padding:16px 40px;border-bottom:1px solid #1e1e24;background:rgba(6,6,8,0.92);display:flex;align-items:center;justify-content:space-between;font-size:11px;letter-spacing:2px;z-index:100}
+.nav-brand{display:flex;align-items:center;gap:12px}
+.nav-logo{width:32px;height:32px}
 .nav-logo span{color:#e03030}
 .status-dot{width:6px;height:6px;background:#e03030;border-radius:50%;display:inline-block;animation:pulse 2s infinite;margin-right:8px}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.2}}
-.hero{min-height:100vh;padding:120px 40px 80px;position:relative;border-bottom:1px solid #1e1e24;display:flex;align-items:center}
+.hero{min-height:100vh;padding:150px 40px 80px;position:relative;border-bottom:1px solid #1e1e24;display:flex;align-items:center}
 .hero-content{max-width:600px}
-.hero-meta{display:flex;gap:24px;margin-bottom:32px;font-size:11px;letter-spacing:2px}
+.hero-logo{text-align:center;margin-bottom:40px}
+.hero-logo img{width:100px;height:100px;animation:pulse-glow 3s infinite}
+@keyframes pulse-glow{0%,100%{filter:drop-shadow(0 0 10px rgba(230,0,0,0.5))}50%{filter:drop-shadow(0 0 25px rgba(230,0,0,0.9))}}
+.hero-meta{display:flex;gap:24px;margin-bottom:32px;font-size:11px;letter-spacing:2px;justify-content:center}
 .tag{padding:4px 10px;border:1px solid #1e1e24;color:#6b6b78}
 .tag-red{border-color:#7a1a1a;color:#e03030}
-.hero-title{font-size:clamp(72px,14vw,180px);line-height:0.88;letter-spacing:-2px;margin-bottom:8px;text-transform:uppercase}
+.hero-title{font-size:clamp(72px,14vw,180px);line-height:0.88;letter-spacing:-2px;margin-bottom:8px;text-transform:uppercase;text-align:center}
 .hero-title .zero{color:#e03030;display:block}
-.hero-subtitle{font-size:13px;color:#3a3a44;letter-spacing:3px;text-transform:uppercase;margin-bottom:48px}
-.hero-desc{max-width:480px;color:#6b6b78;font-size:15px;line-height:1.8;border-left:2px solid #e03030;padding-left:20px;margin-bottom:32px}
-.btn-primary{display:inline-block;background:#e03030;color:#fff;padding:16px 32px;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:all 0.2s;margin:10px 0}
+.hero-subtitle{font-size:13px;color:#3a3a44;letter-spacing:3px;text-transform:uppercase;margin-bottom:48px;text-align:center}
+.hero-desc{max-width:480px;color:#6b6b78;font-size:15px;line-height:1.8;border-left:2px solid #e03030;padding-left:20px;margin:32px auto}
+.btn-primary{display:inline-block;background:#e03030;color:#fff;padding:16px 32px;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:all 0.2s;margin:10px}
 .btn-primary:hover{background:#c02828;transform:translateY(-2px)}
-.btn-secondary{display:inline-block;background:#3a3a44;color:#fff;padding:16px 32px;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:all 0.2s;margin:10px 0}
+.btn-secondary{display:inline-block;background:#3a3a44;color:#fff;padding:16px 32px;text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:all 0.2s;margin:10px}
 .btn-secondary:hover{background:#4a4a54;transform:translateY(-2px)}
-.btn-ghost{display:inline-block;background:transparent;color:#6b6b78;padding:12px 20px;text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;border:1px solid #1e1e24;transition:all 0.2s;margin-left:10px}
-.btn-ghost:hover{border-color:#3a3a44;color:#c8c8d4}
-.hero-cover{position:absolute;right:8%;top:50%;transform:translateY(-50%);width:350px;height:500px}
-.cover-glow{position:absolute;inset:-60px;background:radial-gradient(circle,rgba(224,48,48,0.3) 0%,transparent 70%);filter:blur(80px);animation:glow 2s infinite}
-@keyframes glow{0%,100%{opacity:0.5;transform:scale(0.95)}50%{opacity:1;transform:scale(1.05)}}
-.cover-img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 50px 100px rgba(0,0,0,1)) drop-shadow(0 0 60px rgba(224,48,48,0.6));transform:perspective(800px) rotateY(-35deg) rotateX(10deg);animation:float 5s ease-in-out infinite}
-@keyframes float{0%,100%{transform:perspective(800px) rotateY(-35deg) rotateX(10deg) translateY(0)}50%{transform:perspective(800px) rotateY(-35deg) rotateX(10deg) translateY(-20px)}}
+.hero-cover{position:absolute;right:8%;top:50%;transform:translateY(-50%);width:380px;height:540px;perspective:1200px}
+.cover-glow{position:absolute;inset:-80px;background:radial-gradient(circle,rgba(230,0,0,0.4) 0%,transparent 70%);filter:blur(100px);animation:glow 3s infinite}
+@keyframes glow{0%,100%{opacity:0.6;transform:scale(0.95)}50%{opacity:1;transform:scale(1.05)}}
+.cover-img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 80px 120px rgba(0,0,0,1)) drop-shadow(0 0 80px rgba(230,0,0,0.7));transform:perspective(1200px) rotateY(-25deg) rotateX(8deg) rotateZ(-2deg);animation:float 6s ease-in-out infinite}
+@keyframes float{0%,100%{transform:perspective(1200px) rotateY(-25deg) rotateX(8deg) rotateZ(-2deg) translateY(0)}50%{transform:perspective(1200px) rotateY(-25deg) rotateX(8deg) rotateZ(-2deg) translateY(-25px)}}
 section{padding:100px 40px;border-bottom:1px solid #1e1e24}
 .container{max-width:1100px;margin:0 auto}
 .section-label{font-size:10px;color:#e03030;letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:12px}
 .section-label::before{content:'';width:24px;height:1px;background:#e03030}
 .section-title{font-size:clamp(40px,6vw,80px);line-height:0.95;color:#f0f0f8;letter-spacing:2px;margin-bottom:48px;text-transform:uppercase}
 .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:#1e1e24;margin-bottom:60px}
-.stat-cell{background:#0d0d10;padding:36px 28px}
-.stat-value{font-size:64px;color:#f0f0f8;margin-bottom:8px;display:flex;align-items:baseline;gap:4px}
+.stat-cell{background:#0d0d10;padding:36px 28px;text-align:center}
+.stat-value{font-size:64px;color:#f0f0f8;margin-bottom:8px}
 .stat-value span{color:#e03030;font-size:36px}
 .stat-label{font-size:11px;color:#6b6b78;letter-spacing:2px;text-transform:uppercase}
-.problem-quote{font-size:clamp(24px,3vw,36px);line-height:1.1;color:#e8e8f0;margin-bottom:30px}
+.problem-quote{font-size:clamp(24px,3vw,36px);line-height:1.1;color:#e8e8f0;margin-bottom:30px;text-align:center}
 .problem-quote .highlight{color:#e03030}
-.problem-body{color:#6b6b78;font-size:15px;line-height:1.9}
+.problem-body{color:#6b6b78;font-size:15px;line-height:1.9;max-width:700px;margin:0 auto}
 .chaos-sources{margin-top:60px;display:flex;flex-direction:column;gap:1px;background:#1e1e24}
 .chaos-item{background:#060608;padding:28px 32px;display:grid;grid-template-columns:40px 1fr;gap:24px}
 .chaos-num{font-size:11px;color:#e03030;padding-top:2px}
 .chaos-title{font-size:15px;font-weight:500;color:#e8e8f0;margin-bottom:6px}
 .chaos-body{font-size:14px;color:#6b6b78}
 .tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1px;background:#1e1e24;margin-top:16px}
-.tool-card{background:#060608;padding:44px 36px;transition:background 0.3s}
-.tool-card:hover{background:#0d0d10}
+.tool-card{background:#060608;padding:44px 36px}
 .tool-num{font-size:10px;color:#e03030;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
 .tool-title{font-size:28px;color:#f0f0f8;letter-spacing:2px;margin-bottom:16px;text-transform:uppercase}
 .tool-desc{font-size:14px;color:#6b6b78;line-height:1.8;margin-bottom:28px}
 .tool-items{display:flex;flex-direction:column;gap:10px}
-.tool-item{display:flex;align-items:baseline;gap:12px;font-size:12px;color:#6b6b78;padding:10px 14px;background:#111115;border-left:2px solid transparent;transition:all 0.2s}
-.tool-item:hover{border-left-color:#e03030;color:#c8c8d4}
+.tool-item{display:flex;align-items:baseline;gap:12px;font-size:12px;color:#6b6b78;padding:10px 14px;background:#111115;border-left:2px solid transparent}
 .tool-item .item-tag{color:#e03030;font-size:10px;min-width:20px}
-.triada-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.triada-visual{display:flex;flex-direction:column;gap:1px;background:#1e1e24}
-.triada-step{background:#060608;padding:32px 28px;display:flex;gap:20px;transition:background 0.2s}
-.triada-step:hover{background:#111115}
-.triada-icon{width:36px;height:36px;border:1px solid #7a1a1a;display:flex;align-items:center;justify-content:center;font-size:11px;color:#e03030;flex-shrink:0}
-.triada-step-title{font-size:14px;font-weight:500;color:#e8e8f0;margin-bottom:4px}
-.triada-step-desc{font-size:13px;color:#6b6b78}
-.triada-content{padding-left:20px}
-.triada-heading{font-size:clamp(36px,5vw,64px);line-height:0.95;color:#f0f0f8;letter-spacing:2px;margin-bottom:28px;text-transform:uppercase}
-.triada-text{font-size:14px;color:#6b6b78;line-height:1.9;margin-bottom:20px}
-.triada-quote{margin-top:32px;padding:20px 24px;border-left:3px solid #e03030;background:rgba(224,48,48,0.04);font-size:12px;color:#c8c8d4;line-height:1.7}
-.fund-list{display:grid;grid-template-columns:1fr;gap:1px;background:#1e1e24}
-.fund-item{background:#060608;padding:36px 44px;display:grid;grid-template-columns:80px 1fr;gap:32px;align-items:center;transition:background 0.2s}
-.fund-item:hover{background:#0d0d10}
-.fund-num{font-size:56px;color:#1e1e24;line-height:1}
-.fund-item:hover .fund-num{color:#7a1a1a}
-.fund-title{font-size:11px;color:#e03030;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
-.fund-text{font-size:15px;color:#e8e8f0}
 .author-note{background:#060608;border-top:1px solid #1e1e24;border-bottom:1px solid #1e1e24;padding:60px 40px;text-align:center}
 .author-note p{font-size:14px;color:#c8c8d4;line-height:2;margin-bottom:10px}
 .author-note strong{color:#f0f0f8;font-size:16px;display:block;margin-top:20px}
@@ -85,9 +69,6 @@ section{padding:100px 40px;border-bottom:1px solid #1e1e24}
 .author-label{font-size:10px;color:#6b6b78;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
 .author-name{font-size:48px;color:#f0f0f8;letter-spacing:2px;margin-bottom:20px;text-transform:uppercase}
 .author-text{font-size:14px;color:#6b6b78;line-height:1.9;max-width:400px}
-.author-sig{margin-top:32px;display:flex;align-items:center;gap:16px}
-.sig-line{width:48px;height:1px;background:#e03030}
-.sig-text{font-size:10px;color:#6b6b78;letter-spacing:2px;text-transform:uppercase}
 .cta-box{border:1px solid #1e1e24;padding:48px;position:relative}
 .cta-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#e03030,#7a1a1a,transparent)}
 .cta-label{font-size:10px;color:#e03030;letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
@@ -99,24 +80,30 @@ section{padding:100px 40px;border-bottom:1px solid #1e1e24}
 .faq-item{max-width:800px;margin:0 auto 30px;padding:24px;background:#111115;border:1px solid #1e1e24}
 .faq-item strong{display:block;color:#e03030;font-size:12px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
 .faq-item p{color:#6b6b78;font-size:14px;line-height:1.7}
-footer{padding:32px 40px;display:flex;justify-content:space-between;border-top:1px solid #1e1e24;font-size:11px;color:#3a3a44;letter-spacing:2px}
-footer span{color:#e03030}
+footer{padding:32px 40px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #1e1e24;font-size:11px;color:#3a3a44;letter-spacing:2px}
+.footer-logo{width:40px;height:40px;opacity:0.6}
 .cookie-banner{position:fixed;bottom:0;left:0;right:0;background:#060608;border-top:1px solid #e03030;padding:20px;text-align:center;z-index:999;display:none}
 .cookie-banner p{margin:0 0 15px;color:#6b6b78;font-size:12px}
-.cookie-banner button{background:#e03030;color:#fff;border:none;padding:10px 30px;cursor:pointer;font-size:11px;letter-spacing:2px;text-transform:uppercase;margin:0 5px}
-@media(max-width:1024px){.hero-cover{position:relative;right:auto;top:auto;transform:none;width:280px;height:400px;margin:40px auto 0;display:block}.hero{flex-direction:column;padding-top:150px}.hero-content{text-align:center;margin-bottom:40px}.hero-desc{margin:0 auto 32px;border-left:none;border-bottom:2px solid #e03030;padding-bottom:20px}.triada-grid,.cta-inner{grid-template-columns:1fr;gap:40px}}
-@media(max-width:768px){nav{padding:14px 20px;font-size:10px}.hero{padding:120px 20px 60px}section{padding:70px 20px}.hero-cover{width:220px;height:320px}.triada-content{padding-left:0}footer{flex-direction:column;gap:16px;text-align:center}}
+.cookie-banner button{background:#e03030;color:#fff;border:none;padding:10px 30px;cursor:pointer;font-size:11px;letter-spacing:2px;text-transform:uppercase}
+@media(max-width:1024px){.hero-cover{position:relative;right:auto;top:auto;transform:none;width:300px;height:420px;margin:40px auto 0;display:block}.hero{flex-direction:column;padding-top:150px}.hero-content{text-align:center}.hero-desc{margin:32px auto;border-left:none;border-bottom:2px solid #e03030;padding-bottom:20px}.cta-inner{grid-template-columns:1fr;gap:40px}}
+@media(max-width:768px){nav{padding:14px 20px}.hero{padding:120px 20px 60px}section{padding:70px 20px}.hero-cover{width:240px;height:340px}.hero-logo img{width:80px;height:80px}footer{flex-direction:column;gap:16px;text-align:center}}
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="nav-logo"><span>PROTOKÓŁ</span> ZERO // ROB VELD</div>
+  <div class="nav-brand">
+    <img src="logo.svg" alt="Logo" class="nav-logo">
+    <span>PROTOKÓŁ ZERO // ROB VELD</span>
+  </div>
   <div><span class="status-dot"></span>STATUS: OPERACYJNY // V.1.0.25</div>
 </nav>
 
 <section class="hero">
   <div class="hero-content">
+    <div class="hero-logo">
+      <img src="logo.svg" alt="Protokół Zero Logo">
+    </div>
     <div class="hero-meta">
       <span class="tag">AKT I</span>
       <span class="tag tag-red">ANATOMIA UPADKU</span>
@@ -125,10 +112,9 @@ footer span{color:#e03030}
     <h1 class="hero-title">PROTOKÓŁ<span class="zero">ZERO</span></h1>
     <div class="hero-subtitle">40 DNI MGŁY — SYSTEM ODZYSKIWANIA KONTROLI</div>
     <p class="hero-desc">Nie ma tu motywacyjnego bełkotu. Tylko diagnoza, narzędzia i egzekucja. Dla tych, którzy stoją w miejscu i wiedzą, że coś musi się zmienić — <em>dziś</em>.</p>
-    <div>
-      <a href="#sample" class="btn-secondary">📥 POBIERZ DARMOWĄ PRÓBKĘ</a>
+    <div style="text-align:center">
+      <a href="#sample" class="btn-secondary">📥 POBIERZ DARMOWY ROZDZIAŁ</a>
       <a href="#system" class="btn-primary">↓ WEJDŹ DO PROTOKOŁU</a>
-      <a href="#fundamenty" class="btn-ghost">05 FUNDAMENTÓW →</a>
     </div>
   </div>
   <div class="hero-cover">
@@ -210,15 +196,14 @@ footer span{color:#e03030}
       <div class="author-label">AUTOR PROTOKOŁU</div>
       <div class="author-name">ROB VELD</div>
       <div class="author-text">Protokół Zero to osobista mapa z dna kryzysu. Każde narzędzie było testowane w warunkach, w których nic innego nie działało.</div>
-      <div class="author-sig"><div class="sig-line"></div><div class="sig-text">OGARNIJ CHAOS © 2025</div></div>
     </div>
     <div class="cta-box">
       <div class="cta-label">WYBIERZ SWOJĄ OPCJĘ</div>
       <div class="cta-headline">ZACZNIJ DZIAŁAĆ<br>TERAZ</div>
       <div class="cta-sub">Nie czekaj na poniedziałek. Twój Protokół Zero zaczyna się w tej sekundzie.</div>
       <div class="cta-actions">
-        <a href="https://naffy.pl/checkout/https://tiny.pl/102cvrqjb" class="btn-primary">🔥 PEŁNA WERSJA – 37 ZŁ</a>
-       <a href="https://naffy.pl/landing/TWOJ_LINK" class="btn-secondary">📥 POBIERZ DARMOWA PRÓBKA</a>
+        <a href="https://naffy.pl/checkout/TWOJ_LINK" class="btn-primary">🔥 PEŁNA WERSJA – 47 ZŁ</a>
+        <a href="https://naffy.pl/landing/TWOJ_LINK" class="btn-secondary">📥 POBIERZ DARMOWY ROZDZIAŁ</a>
       </div>
       <div class="cta-note">WERSJA 1.0.25 // OGARNIJ CHAOS</div>
     </div>
@@ -236,19 +221,21 @@ footer span{color:#e03030}
 </section>
 
 <footer>
-  <div><span>PROTOKÓŁ</span> ZERO — ROB VELD</div>
-  <div><span>OGARNIJ CHAOS</span> © 2025 — V.1.0.25</div>
+  <img src="logo.svg" alt="Logo" class="footer-logo">
+  <div>
+    <div><span>PROTOKÓŁ</span> ZERO — ROB VELD</div>
+    <div><span>OGARNIJ CHAOS</span> © 2025 — V.1.0.25</div>
+  </div>
 </footer>
 
 <div id="cookie-banner" class="cookie-banner">
-  <p>Ta strona używa cookies wyłącznie do obsługi płatności (Naffy). Nie śledzimy Cię. Nie sprzedajemy danych.</p>
+  <p>Ta strona używa cookies wyłącznie do obsługi płatności (Naffy). Nie śledzimy Cię.</p>
   <button onclick="acceptCookies()">ROZUMIEM</button>
 </div>
 
 <script>
-setTimeout(function(){document.getElementById('cookie-banner').style.display='block'},1000);
-function acceptCookies(){document.getElementById('cookie-banner').style.display='none';localStorage.setItem('cookiesAccepted','true');}
-if(localStorage.getItem('cookiesAccepted')){document.getElementById('cookie-banner').style.display='none';}
+function acceptCookies(){localStorage.setItem('cookiesAccepted','true');document.getElementById('cookie-banner').style.display='none';}
+if(localStorage.getItem('cookiesAccepted')){document.getElementById('cookie-banner').style.display='none';}else{setTimeout(function(){document.getElementById('cookie-banner').style.display='block';},1000);}
 </script>
 
 </body>
